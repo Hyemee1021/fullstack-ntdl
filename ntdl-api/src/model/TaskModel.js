@@ -26,7 +26,7 @@ export const SwitchTask = (_id, data) => {
   return TaskSchema.findByIdAndUpdate(_id, data, { new: true });
 };
 
-//delete
+// //delete
 export const delteTask = (_id) => {
   return TaskSchema.findByIdAndDelete(_id);
 };
