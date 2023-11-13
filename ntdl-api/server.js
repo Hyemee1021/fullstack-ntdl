@@ -6,7 +6,9 @@ import { SwitchTask } from "./src/model/TaskModel.js";
 import { delteTask } from "./src/model/TaskModel.js";
 import { deleteManyTask } from "./src/model/TaskModel.js";
 import cors from "cors";
+import "dotenv/config";
 
+console.log(process.env);
 const app = express();
 
 const PORT = 8000;
