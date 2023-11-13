@@ -11,7 +11,7 @@ import "dotenv/config";
 console.log(process.env);
 const app = express();
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 //middleware
 app.use(express.json());
