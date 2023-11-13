@@ -7,17 +7,23 @@ import { delteTask } from "./src/model/TaskModel.js";
 import { deleteManyTask } from "./src/model/TaskModel.js";
 import cors from "cors";
 import "dotenv/config";
-
+import morgan from "morgan";
+import path from "path";
 console.log(process.env);
 const app = express();
-
+const __dirname = path.resolve();
 const PORT = process.env.PORT || 8000;
 
 //middleware
+app.use(express.static(__dirname + "/build"));
 app.use(express.json());
 app.use(cors());
-
+app.use(morgan);
 connectMongo();
+
+app.use("/", (req, res) => {
+  res.sendFile(__dirname + "index.html");
+});
 
 app.get("/api/v1/task", async (req, res) => {
   const taskList = await getAllTasks();
@@ -83,11 +89,11 @@ app.delete("/api/v1/task/", async (req, res) => {
       });
 });
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Here is root route",
-  });
-});
+// app.get("/", (req, res) => {
+//   res.json({
+//     message: "Here is root route",
+//   });
+// });
 
 app.listen(PORT, (error) => {
   error
